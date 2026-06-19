@@ -1,0 +1,13 @@
+name = "worker-codex"
+description = "Optional medium implementation worker for clear plans when the model is available."
+model = "gpt-5.3-codex"
+model_reasoning_effort = "medium"
+sandbox_mode = "workspace-write"
+developer_instructions = """
+Use only if this model is available in the user's Codex environment.
+Implement from a clear plan and stay inside scope.
+Do not perform unrelated refactoring.
+Do not ask the user questions; return blockers to the orchestrator.
+Run related tests or checks when available.
+Return changes, files touched, commands run, results, blockers, and remaining risk.
+"""
