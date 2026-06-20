@@ -95,6 +95,9 @@ def validate_skills() -> None:
             require("Route Decision is an execution checkpoint" in text, f"{skill}/SKILL.md treats route decision as checkpoint")
             require("Delegate the main implementation to `worker-mini`" in text, f"{skill}/SKILL.md delegates standard implementation to worker-mini")
             require("safer to do directly" in text, f"{skill}/SKILL.md rejects direct-work convenience as no-worker reason")
+            require("The Skill itself is the delegation instruction" in text, f"{skill}/SKILL.md treats skill as delegation instruction")
+            require("Subagent unavailable:" in text, f"{skill}/SKILL.md requires explicit subagent unavailable marker")
+            require("final review incomplete" in text, f"{skill}/SKILL.md requires incomplete review marker when Heavy agents are skipped")
             require("initializer data correction" in text, f"{skill}/SKILL.md treats DB initializer correction as Heavy")
             require("## Final Report" in text, f"{skill}/SKILL.md has final report requirements")
         for rel in references:

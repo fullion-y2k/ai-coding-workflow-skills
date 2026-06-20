@@ -41,6 +41,8 @@ Fast Track は司令塔が直接実装してよい設計です。Standard / Heav
 
 DB schema、migration、initializer による既存行補正、DB 許可値、public API、auth、permission、security、外部連携、本番データ、データ消失リスクは Heavy route の下限です。Standard / Heavy で「直接やる方が安全」は worker を省略する理由になりません。
 
+Skill 自体が delegation 指示です。ユーザーが明示的に「サブエージェントを使って」と書く必要はありません。Heavy で subagent tools が使えず explorer、worker、critical reviewer を省く場合は、final review incomplete として不足 agent を列挙します。
+
 サブエージェントを使いすぎると、逆にトークンが増えます。Fast Track では起動しないこともあります。Heavy では人への確認、原因特定、レビューを省略しません。
 
 ## OpenAI Codex profile

@@ -50,6 +50,8 @@ Fast Track may be implemented directly by the orchestrator. Standard and Heavy d
 
 DB schema, migrations, initializer data correction, allowed DB values, public API contracts, auth, permissions, security, external integrations, production data, and data-loss risk are Heavy route floors. For Standard or Heavy, "safer to do directly" is not a valid reason to skip the worker.
 
+The Skill itself is the delegation instruction. The user should not need to explicitly ask for subagents. If Heavy proceeds without explorer, worker, or critical reviewer because subagent tools are unavailable, the final report must mark final review incomplete and list the missing agents.
+
 ## Roles
 
 | Role | Generic | OpenAI Codex profile |
