@@ -39,6 +39,8 @@ $ai-existing-project-change を使って、仕様書に従って実装して
 
 Fast Track は司令塔が直接実装してよい設計です。Standard / Heavy では、サブエージェントが利用可能なら main implementation を `worker-mini` に委譲します。Heavy では、利用可能なら explorer と critical reviewer も使います。使えない場合は、その理由を明記して安全な範囲で単独実行します。
 
+DB schema、migration、initializer による既存行補正、DB 許可値、public API、auth、permission、security、外部連携、本番データ、データ消失リスクは Heavy route の下限です。Standard / Heavy で「直接やる方が安全」は worker を省略する理由になりません。
+
 サブエージェントを使いすぎると、逆にトークンが増えます。Fast Track では起動しないこともあります。Heavy では人への確認、原因特定、レビューを省略しません。
 
 ## OpenAI Codex profile

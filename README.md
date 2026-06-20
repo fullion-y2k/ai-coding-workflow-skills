@@ -48,6 +48,8 @@ should proceed through route decision, implementation, related checks, verificat
 
 Fast Track may be implemented directly by the orchestrator. Standard and Heavy delegate the main implementation to `worker-mini` when subagent tools are available. Heavy also uses at least one independent explorer and critical review when available. If subagents are unavailable, the orchestrator must say so and continue in single-agent mode only when safe.
 
+DB schema, migrations, initializer data correction, allowed DB values, public API contracts, auth, permissions, security, external integrations, production data, and data-loss risk are Heavy route floors. For Standard or Heavy, "safer to do directly" is not a valid reason to skip the worker.
+
 ## Roles
 
 | Role | Generic | OpenAI Codex profile |

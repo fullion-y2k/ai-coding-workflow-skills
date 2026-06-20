@@ -43,7 +43,7 @@ For Standard and Heavy routes, delegate the main implementation to one implement
 
 The orchestrator owns route, scope, handoff, review, verification, and final report. The worker owns the bounded code edit and related checks.
 
-For Standard or Heavy, no-worker execution is allowed only when subagent tools are unavailable, the task is reclassified as Fast Track, the worker returns a blocker, or the task requires orchestrator-only context that cannot be safely summarized. State the reason in the final report.
+For Standard or Heavy, no-worker execution is allowed only when subagent tools are unavailable, the task is reclassified as Fast Track, the worker returns a blocker, or the task requires orchestrator-only context that cannot be safely summarized. Preference, convenience, small-looking scope, or "safer to do directly" are not valid no-worker reasons. State the allowed reason in Route Decision and final report.
 
 ## Stop Conditions
 
@@ -82,6 +82,12 @@ After Route Decision:
 - Fast Track: implement directly.
 - Standard: prepare a compact work package, then implement.
 - Heavy: complete only required human gates, then proceed through investigation, implementation, verification, and critical review.
+
+## Route Risk Floors
+
+Classify as Heavy when the work affects DB schema, migrations, initializer data correction, allowed DB values, public API contracts, auth, permissions, security, external integrations, production data, or data-loss risk.
+
+Classify as Standard only when none of those boundaries are affected. If a Standard task later touches one, escalate before implementation.
 
 ## Specification-Driven Work
 
@@ -124,7 +130,7 @@ Use when DB/API/auth/security/external integration/business-rule impact, broad u
 - Use at least one independent explorer when subagent tools are available.
 - Delegate the main implementation to `worker-mini`, or optional `worker-codex` only when installed and explicitly selected.
 - Use critical review before final completion.
-- If subagents are unavailable, state that clearly and continue in single-agent mode only when safe.
+- If subagents are unavailable, state that clearly before implementation and continue in single-agent mode only when safe.
 - Require go/no-go and risk notes.
 - Create REQUIREMENTS, DESIGN, IMPLEMENTATION-PLAN, VERIFICATION, and FINAL-REVIEW artifacts.
 
