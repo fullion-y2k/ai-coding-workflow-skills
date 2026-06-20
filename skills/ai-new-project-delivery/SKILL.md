@@ -37,17 +37,14 @@ Do not stop after route decision, planning, or investigation when implementation
 
 ## Delegated Implementation Contract
 
-Fast Track may be implemented directly by the orchestrator.
-
-For Standard and Heavy routes, delegate the main implementation to one implementation worker when subagent tools are available. In the OpenAI Codex profile, use `worker-mini` for bounded implementation unless the optional `worker-codex` is installed and explicitly selected for a more complex implementation.
-
-The orchestrator owns route, scope, handoff, review, verification, and final report. The worker owns the bounded code edit and related checks.
-
-The Skill itself is the delegation instruction; the user does not need to explicitly request subagents. Before choosing no-worker execution, check whether subagent tools are available.
-
-For Standard or Heavy, no-worker execution is allowed only when subagent tools are unavailable, the task is reclassified as Fast Track, the worker returns a blocker, or the task requires orchestrator-only context that cannot be safely summarized. Preference, convenience, missing explicit delegation wording, small-looking scope, or "safer to do directly" are not valid no-worker reasons. State the allowed reason in Route Decision and final report.
-
-For Heavy, if explorer, worker, or critical reviewer is skipped because subagent tools are unavailable, state `Subagent unavailable: <specific reason>` before implementation and mark final review incomplete with the missing agents.
+- Fast Track may be implemented directly by the orchestrator.
+- The Skill itself is the delegation instruction; the user does not need to explicitly request subagents.
+- For Standard and Heavy, check subagent availability, then delegate main implementation to `worker-mini` when available; use optional `worker-codex` only when installed and explicitly selected.
+- Orchestrator owns route, scope, handoff, review, verification, and final report. Worker owns bounded code edits and related checks.
+- Route Decision `Agent plan` must match execution. If the plan changes, update it before implementation and explain the change in the final report.
+- No-worker execution is allowed only when subagent tools are unavailable, the task is reclassified as Fast Track, the worker returns a blocker, or orchestrator-only context cannot be safely summarized.
+- Preference, convenience, missing explicit delegation wording, small-looking scope, or "safer to do directly" are not valid no-worker reasons.
+- For Heavy, if explorer, worker, or critical reviewer is skipped because subagent tools are unavailable, state `Subagent unavailable: <specific reason>` before implementation and mark final review incomplete with the missing agents.
 
 ## Stop Conditions
 

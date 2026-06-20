@@ -98,6 +98,8 @@ def validate_skills() -> None:
             require("The Skill itself is the delegation instruction" in text, f"{skill}/SKILL.md treats skill as delegation instruction")
             require("Subagent unavailable:" in text, f"{skill}/SKILL.md requires explicit subagent unavailable marker")
             require("final review incomplete" in text, f"{skill}/SKILL.md requires incomplete review marker when Heavy agents are skipped")
+            require("Agent plan` must match execution" in text, f"{skill}/SKILL.md requires agent plan to match execution")
+            require("Worker owns bounded code edits" in text, f"{skill}/SKILL.md assigns code edits to worker")
             require("initializer data correction" in text, f"{skill}/SKILL.md treats DB initializer correction as Heavy")
             require("## Final Report" in text, f"{skill}/SKILL.md has final report requirements")
         for rel in references:

@@ -43,6 +43,8 @@ DB schema、migration、initializer による既存行補正、DB 許可値、pu
 
 Skill 自体が delegation 指示です。ユーザーが明示的に「サブエージェントを使って」と書く必要はありません。Heavy で subagent tools が使えず explorer、worker、critical reviewer を省く場合は、final review incomplete として不足 agent を列挙します。
 
+Route Decision の Agent plan は実際の実行と一致させます。途中で変わる場合は、実装前に更新し、最終報告で理由を説明します。
+
 サブエージェントを使いすぎると、逆にトークンが増えます。Fast Track では起動しないこともあります。Heavy では人への確認、原因特定、レビューを省略しません。
 
 ## OpenAI Codex profile

@@ -52,6 +52,8 @@ DB schema, migrations, initializer data correction, allowed DB values, public AP
 
 The Skill itself is the delegation instruction. The user should not need to explicitly ask for subagents. If Heavy proceeds without explorer, worker, or critical reviewer because subagent tools are unavailable, the final report must mark final review incomplete and list the missing agents.
 
+The Route Decision agent plan must match actual execution. If the plan changes, update it before implementation and explain the change in the final report.
+
 ## Roles
 
 | Role | Generic | OpenAI Codex profile |
