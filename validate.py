@@ -89,8 +89,10 @@ def validate_skills() -> None:
             require(fields.get("name") == skill, f"{skill}/SKILL.md has matching name")
             require(bool(fields.get("description")), f"{skill}/SKILL.md has description")
             require("## Default Completion Contract" in text, f"{skill}/SKILL.md has completion contract")
+            require("## Delegated Implementation Contract" in text, f"{skill}/SKILL.md has delegated implementation contract")
             require("## Stop Conditions" in text, f"{skill}/SKILL.md has stop conditions")
             require("Route Decision is an execution checkpoint" in text, f"{skill}/SKILL.md treats route decision as checkpoint")
+            require("Delegate the main implementation to `worker-mini`" in text, f"{skill}/SKILL.md delegates standard implementation to worker-mini")
             require("## Final Report" in text, f"{skill}/SKILL.md has final report requirements")
         for rel in references:
             require((skill_dir / rel).is_file(), f"{skill}/{rel} exists")

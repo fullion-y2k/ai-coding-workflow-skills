@@ -37,6 +37,16 @@ When the user asks to implement, fix, change, proceed, follow a specification, o
 
 Do not stop after route decision, planning, investigation, or cause analysis when implementation was requested. Route Decision is an execution checkpoint, not the final answer.
 
+## Delegated Implementation Contract
+
+Fast Track may be implemented directly by the orchestrator.
+
+For Standard and Heavy routes, delegate the main implementation to one implementation worker when subagent tools are available. In the OpenAI Codex profile, use `worker-mini` for bounded implementation unless the optional `worker-codex` is installed and explicitly selected for a more complex implementation.
+
+The orchestrator owns route, scope, cause analysis, handoff, review, verification, and final report. The worker owns the bounded code edit and related checks.
+
+For Standard or Heavy, no-worker execution is allowed only when subagent tools are unavailable, the task is reclassified as Fast Track, the worker returns a blocker, or the task requires orchestrator-only context that cannot be safely summarized. State the reason in the final report.
+
 ## Stop Conditions
 
 Stop only when one of these is true:
@@ -102,7 +112,7 @@ Execution:
 Use for normal bug fixes and behavior changes.
 
 - Create `docs/ai-work/<task-id>/STATE.md`, `WORK-PACKAGE.md`, and `VERIFICATION.md`.
-- Use one implementation worker when subagent tools are available, unless the task is clearly small enough for Fast Track.
+- Delegate the main implementation to `worker-mini` when subagent tools are available.
 - Use explorer only when cause is not obvious.
 - Complete cause analysis before implementation.
 - Worker runs related tests.
@@ -115,7 +125,7 @@ Use when DB/API/auth/security/external integration/business-rule impact, broad u
 
 - Require human confirmation before implementation.
 - Use at least one independent explorer when subagent tools are available.
-- Use one implementation worker.
+- Delegate the main implementation to `worker-mini`, or optional `worker-codex` only when installed and explicitly selected.
 - Use critical review before final completion.
 - If subagents are unavailable, state that clearly and continue in single-agent mode only when safe.
 - Require go/no-go and risk notes.

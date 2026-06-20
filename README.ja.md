@@ -37,7 +37,7 @@ $ai-existing-project-change を使って、仕様書に従って実装して
 | Standard | 通常の複数ステップ作業 | 必要時 explorer、worker 1つ | STATE / WORK-PACKAGE / VERIFICATION | リスクが出たら独立レビュー |
 | Heavy | DB/API/auth/security/業務ルール/外部連携など | explorer 最大2つ、worker 1つ | 要件、設計、計画、検証、最終レビュー | critical review と go/no-go |
 
-Standard では、サブエージェントが利用可能で Fast Track と言えるほど小さくない場合、実装 worker を1つ使う前提です。Heavy では、利用可能なら explorer、worker、critical reviewer を使います。使えない場合は、その理由を明記して安全な範囲で単独実行します。
+Fast Track は司令塔が直接実装してよい設計です。Standard / Heavy では、サブエージェントが利用可能なら main implementation を `worker-mini` に委譲します。Heavy では、利用可能なら explorer と critical reviewer も使います。使えない場合は、その理由を明記して安全な範囲で単独実行します。
 
 サブエージェントを使いすぎると、逆にトークンが増えます。Fast Track では起動しないこともあります。Heavy では人への確認、原因特定、レビューを省略しません。
 

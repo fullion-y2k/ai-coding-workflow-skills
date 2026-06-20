@@ -46,7 +46,7 @@ should proceed through route decision, implementation, related checks, verificat
 | Standard | Normal multi-step work | Optional explorer, one worker | STATE, WORK-PACKAGE, VERIFICATION | Independent review only when risk appears |
 | Heavy | DB/API/auth/security/business/external integration risk or unclear impact | Up to two explorers, one worker | Requirements, design, plan, verification, final review | Critical review and go/no-go |
 
-Standard uses one implementation worker when subagent tools are available unless the task is clearly small enough for Fast Track. Heavy uses at least one independent explorer, one implementation worker, and critical review when available. If subagents are unavailable, the orchestrator must say so and continue in single-agent mode only when safe.
+Fast Track may be implemented directly by the orchestrator. Standard and Heavy delegate the main implementation to `worker-mini` when subagent tools are available. Heavy also uses at least one independent explorer and critical review when available. If subagents are unavailable, the orchestrator must say so and continue in single-agent mode only when safe.
 
 ## Roles
 
