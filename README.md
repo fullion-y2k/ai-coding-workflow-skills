@@ -80,6 +80,13 @@ Skills are distributed in this repository under `skills/`. The install scripts c
 
 The optional `worker-codex.toml.example` is installed only when explicitly requested and only if `gpt-5.3-codex` is available in your Codex environment. The scripts do not write secrets, tokens, `.env` files, or `config.toml`.
 
+Existing installs are backed up outside active discovery directories:
+
+- Skill backups: `~/.agents/skill-backups/`
+- Agent backups: `~/.codex/agent-backups/`
+
+The active `~/.agents/skills/` directory should contain only the latest installed Skill folders.
+
 ## Usage Examples
 
 ```text

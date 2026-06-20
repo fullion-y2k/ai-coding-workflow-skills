@@ -63,6 +63,15 @@ Fast Track は司令塔が直接実装してよい設計です。Standard / Heav
 
 `worker-codex.toml.example` はオプション指定時だけ `worker-codex.toml` としてコピーされます。スクリプトは secret、token、`.env`、`config.toml` を作成・変更しません。
 
+既存インストールのバックアップは、Codex の検出対象外に退避します。
+
+```text
+Skill backup: ~/.agents/skill-backups/
+Agent backup: ~/.codex/agent-backups/
+```
+
+有効な `~/.agents/skills/` には、最新の Skill フォルダだけが残る想定です。
+
 ## 使用例
 
 ```text
