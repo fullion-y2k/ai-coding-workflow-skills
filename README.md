@@ -30,6 +30,14 @@ The orchestrator owns objective, route, scope, acceptance criteria, and final ve
 
 Existing project changes emphasize cause analysis before implementation unless Fast Track conditions are met.
 
+You should not need to write a long prompt to make the workflow finish. A request such as:
+
+```text
+$ai-existing-project-change Follow this specification and implement it.
+```
+
+should proceed through route decision, implementation, related checks, verification, and final reporting unless a real blocker exists.
+
 ## Routes
 
 | Route | When to use | Agents | Artifacts | Review |
@@ -37,6 +45,8 @@ Existing project changes emphasize cause analysis before implementation unless F
 | Fast Track | Clear, low-risk, easy to verify | Usually none, at most one | Usually none | Orchestrator checks diff/tests |
 | Standard | Normal multi-step work | Optional explorer, one worker | STATE, WORK-PACKAGE, VERIFICATION | Independent review only when risk appears |
 | Heavy | DB/API/auth/security/business/external integration risk or unclear impact | Up to two explorers, one worker | Requirements, design, plan, verification, final review | Critical review and go/no-go |
+
+Standard uses one implementation worker when subagent tools are available unless the task is clearly small enough for Fast Track. Heavy uses at least one independent explorer, one implementation worker, and critical review when available. If subagents are unavailable, the orchestrator must say so and continue in single-agent mode only when safe.
 
 ## Roles
 

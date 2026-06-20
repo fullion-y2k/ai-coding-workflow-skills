@@ -84,9 +84,14 @@ def validate_skills() -> None:
         skill_md = skill_dir / "SKILL.md"
         require(skill_md.is_file(), f"{skill}/SKILL.md exists")
         if skill_md.is_file():
-            fields = parse_frontmatter(read_text(skill_md), skill_md)
+            text = read_text(skill_md)
+            fields = parse_frontmatter(text, skill_md)
             require(fields.get("name") == skill, f"{skill}/SKILL.md has matching name")
             require(bool(fields.get("description")), f"{skill}/SKILL.md has description")
+            require("## Default Completion Contract" in text, f"{skill}/SKILL.md has completion contract")
+            require("## Stop Conditions" in text, f"{skill}/SKILL.md has stop conditions")
+            require("Route Decision is an execution checkpoint" in text, f"{skill}/SKILL.md treats route decision as checkpoint")
+            require("## Final Report" in text, f"{skill}/SKILL.md has final report requirements")
         for rel in references:
             require((skill_dir / rel).is_file(), f"{skill}/{rel} exists")
 
