@@ -54,6 +54,8 @@ The Skill itself is the delegation instruction. The user should not need to expl
 
 The Route Decision agent plan must match actual execution. If the plan changes, update it before implementation and explain the change in the final report.
 
+For Standard and Heavy, the orchestrator stays token-light: before delegation it should read only enough to route and create a compact handoff packet, usually no more than 3 targeted files or commands. The worker performs the main implementation.
+
 ## Roles
 
 | Role | Generic | OpenAI Codex profile |

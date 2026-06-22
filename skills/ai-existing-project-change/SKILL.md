@@ -48,6 +48,11 @@ Do not stop after route decision, planning, investigation, or cause analysis whe
 - Preference, convenience, missing explicit delegation wording, small-looking scope, or "safer to do directly" are not valid no-worker reasons.
 - For Heavy, if explorer, worker, or critical reviewer is skipped because subagent tools are unavailable, state `Subagent unavailable: <specific reason>` before implementation and mark final review incomplete with the missing agents.
 
+## Delegation Barrier
+
+For Standard and Heavy, the orchestrator must stay token-light: before delegation, read only enough to route and create the handoff packet, usually no more than 3 targeted files or commands.
+Do not edit files, run broad investigation, or perform main implementation before the worker returns. After worker output, review the diff, run verification, and produce the final report.
+
 ## Stop Conditions
 
 Stop only when one of these is true:
