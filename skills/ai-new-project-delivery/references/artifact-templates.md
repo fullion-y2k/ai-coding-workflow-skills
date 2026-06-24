@@ -9,6 +9,17 @@
 
 ## Route
 
+## Worktree Lock
+
+Confirmed working folder:
+Expected git top-level:
+Expected branch/worktree name:
+Allowed read root:
+Allowed edit root:
+Forbidden sibling worktrees:
+Lock verification commands:
+Worktree verified:
+
 ## Confirmed Requirements
 
 ## Assumptions
@@ -45,11 +56,21 @@
 
 ## Relevant Files and Symbols
 
+## Worktree Lock
+
+Confirmed working folder:
+Expected git top-level:
+Allowed read root:
+Allowed edit root:
+Worktree verified:
+
 ## Assigned Action
 
 ## Required Verification
 
 ## Blocker Return Format
+
+Use `BLOCKER: worktree mismatch` when the Worktree Lock does not match.
 ```
 
 ## VERIFICATION.md
@@ -66,6 +87,8 @@
 ## Browser Verification
 
 ## Manual Verification Fallback
+
+## Worktree verified
 
 ## Acceptance Criteria Check
 
@@ -130,6 +153,8 @@
 ## Diff Review
 
 ## Verification Evidence
+
+## Worktree verified
 
 ## Go/No-Go
 

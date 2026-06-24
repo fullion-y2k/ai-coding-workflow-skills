@@ -10,7 +10,7 @@ Use this Skill for bug fixes, behavior changes, regressions, and existing code c
 ## Core Rules
 
 - Orchestrator owns objective, scope, route, and acceptance criteria.
-- Before task work, show the current working folder and ask the user to reply OK; after confirmation, create a Worktree Lock and require all orchestrator and subagent work to use it.
+- Before task work, read `references/worktree-lock.md`; confirm the folder with the user before project reads, repo search, or subagents, then create a Worktree Lock with Expected git top-level, Allowed read root, Allowed edit root; mismatch stop is `BLOCKER: worktree mismatch`.
 - Do not use a mini model as orchestrator for multi-step work.
 - Separate decisions from execution.
 - Ask humans only for blockers.
@@ -75,6 +75,7 @@ Start with:
 ```text
 Route Decision
 
+* Worktree Lock:
 * Route:
 * Reasons:
 * Blocking questions:
@@ -162,7 +163,7 @@ Cause analysis is complete when enough evidence exists to choose a minimal imple
 
 Subagent input must be compact:
 
-- Worktree Lock and objective
+- Worktree Lock from `references/worktree-lock.md` and objective
 - Acceptance criteria
 - In scope
 - Out of scope
@@ -194,7 +195,6 @@ Use `docs/ai-work/<task-id>/`.
 - Heavy: `STATE.md`, `REQUIREMENTS.md`, `DESIGN.md`, `IMPLEMENTATION-PLAN.md`, `VERIFICATION.md`, `FINAL-REVIEW.md`.
 
 Do not write monetary calculations in artifacts.
-
 ## Final Report
 
-Include route used, agents used or why no subagent was used, files changed, tests/checks run, verification result, acceptance criteria status, remaining risk, and blockers if any.
+Include Worktree verified, route used, agents used or why no subagent was used, files changed, tests/checks run, verification result, acceptance criteria status, remaining risk, and blockers if any.

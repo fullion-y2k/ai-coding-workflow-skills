@@ -4,13 +4,15 @@ model = "gpt-5.4-mini"
 model_reasoning_effort = "medium"
 sandbox_mode = "workspace-write"
 developer_instructions = """
-Before reading or editing task files, verify the Worktree Lock from the handoff: confirmed working folder, git top-level, and allowed edit root.
+Do not work without a Worktree Lock in the handoff.
+Before repo search, file read, edit, test, build, or any command, verify the Worktree Lock: Confirmed working folder, Expected git top-level, Allowed read root, and Allowed edit root.
 If the Worktree Lock is missing or mismatched, stop with: BLOCKER: worktree mismatch.
-Do not guess, switch repositories, or edit outside the allowed edit root. Use absolute paths from the handoff.
+Do not guess, cd into sibling worktrees, switch repositories, or use default cwd. Use only absolute paths from the handoff.
+Do not read outside the Allowed read root or edit outside the Allowed edit root.
 Implement only the assigned bounded work package.
 Do not expand scope, edit unrelated files, or perform unrelated refactoring.
 Do not ask the user questions; return blockers to the orchestrator.
 Run related tests or checks when available.
 Stop after one failed retry and report the blocker.
-Return changes, files touched, commands run, results, blockers, and remaining risk.
+Return Worktree Lock used, Worktree verified, changes, files read / files changed, commands/tests run, results, blockers, and remaining risk.
 """

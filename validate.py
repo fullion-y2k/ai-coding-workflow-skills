@@ -18,10 +18,12 @@ REQUIRED_SKILLS = {
     "ai-new-project-delivery": [
         "references/artifact-templates.md",
         "references/verification.md",
+        "references/worktree-lock.md",
     ],
     "ai-existing-project-change": [
         "references/artifact-templates.md",
         "references/investigation-and-verification.md",
+        "references/worktree-lock.md",
     ],
 }
 REQUIRED_AGENT_KEYS = {
@@ -92,8 +94,14 @@ def validate_skills() -> None:
             require("## Delegated Implementation Contract" in text, f"{skill}/SKILL.md has delegated implementation contract")
             require("## Stop Conditions" in text, f"{skill}/SKILL.md has stop conditions")
             require("## Route Risk Floors" in text, f"{skill}/SKILL.md has route risk floors")
-            require("create a Worktree Lock" in text, f"{skill}/SKILL.md has worktree lock creation")
-            require("Worktree Lock and objective" in text, f"{skill}/SKILL.md requires worktree lock in handoff")
+            require("Worktree Lock" in text, f"{skill}/SKILL.md has worktree lock protocol")
+            require("BLOCKER: worktree mismatch" in text, f"{skill}/SKILL.md has worktree mismatch blocker")
+            require("Expected git top-level" in text, f"{skill}/SKILL.md requires expected git top-level")
+            require("Allowed read root" in text, f"{skill}/SKILL.md requires allowed read root")
+            require("Allowed edit root" in text, f"{skill}/SKILL.md requires allowed edit root")
+            require("project reads, repo search, or subagents" in text, f"{skill}/SKILL.md blocks project reads before folder confirmation")
+            require("Worktree Lock from `references/worktree-lock.md`" in text, f"{skill}/SKILL.md requires worktree lock in handoff")
+            require("Worktree verified" in text, f"{skill}/SKILL.md requires final worktree verification")
             require("Route Decision is an execution checkpoint" in text, f"{skill}/SKILL.md treats route decision as checkpoint")
             require("Delegate the main implementation to `worker-mini`" in text, f"{skill}/SKILL.md delegates standard implementation to worker-mini")
             require("safer to do directly" in text, f"{skill}/SKILL.md rejects direct-work convenience as no-worker reason")
@@ -108,6 +116,34 @@ def validate_skills() -> None:
             require("## Final Report" in text, f"{skill}/SKILL.md has final report requirements")
         for rel in references:
             require((skill_dir / rel).is_file(), f"{skill}/{rel} exists")
+        artifact = skill_dir / "references/artifact-templates.md"
+        if artifact.is_file():
+            artifact_text = read_text(artifact)
+            for phrase in [
+                "Worktree Lock",
+                "Expected git top-level",
+                "Allowed read root",
+                "Allowed edit root",
+                "Worktree verified",
+                "BLOCKER: worktree mismatch",
+            ]:
+                require(phrase in artifact_text, f"{skill}/references/artifact-templates.md contains {phrase}")
+        worktree_lock = skill_dir / "references/worktree-lock.md"
+        if worktree_lock.is_file():
+            lock_text = read_text(worktree_lock)
+            for phrase in [
+                "Confirmed working folder",
+                "Expected git top-level",
+                "Expected branch/worktree name",
+                "Allowed read root",
+                "Allowed edit root",
+                "Forbidden sibling worktrees",
+                "Lock verification commands",
+                "BLOCKER: worktree mismatch",
+                "Worktree Lock used",
+                "Worktree verified",
+            ]:
+                require(phrase in lock_text, f"{skill}/references/worktree-lock.md contains {phrase}")
 
 
 def validate_agents() -> None:
@@ -132,7 +168,17 @@ def validate_agents() -> None:
         instructions = str(data.get("developer_instructions", ""))
         require("Worktree Lock" in instructions, f"{path.relative_to(ROOT)} requires Worktree Lock")
         require("BLOCKER: worktree mismatch" in instructions, f"{path.relative_to(ROOT)} blocks on worktree mismatch")
+        require("Expected git top-level" in instructions, f"{path.relative_to(ROOT)} checks expected git top-level")
+        require("Allowed read root" in instructions, f"{path.relative_to(ROOT)} checks allowed read root")
+        require("Allowed edit root" in instructions, f"{path.relative_to(ROOT)} checks allowed edit root")
+        require("Worktree verified" in instructions, f"{path.relative_to(ROOT)} reports worktree verification")
         require("absolute paths" in instructions, f"{path.relative_to(ROOT)} requires absolute paths")
+        require("repo search" in instructions, f"{path.relative_to(ROOT)} verifies before repo search")
+        require("file read" in instructions, f"{path.relative_to(ROOT)} verifies before file read")
+        require("test" in instructions, f"{path.relative_to(ROOT)} verifies before tests")
+        require("build" in instructions, f"{path.relative_to(ROOT)} verifies before builds")
+        if data.get("sandbox_mode") == "read-only":
+            require("Allowed edit root must be none" in instructions, f"{path.relative_to(ROOT)} requires no edit root for read-only agents")
 
 
 def validate_language() -> None:
