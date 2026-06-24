@@ -10,6 +10,7 @@ Use this Skill for bug fixes, behavior changes, regressions, and existing code c
 ## Core Rules
 
 - Orchestrator owns objective, scope, route, and acceptance criteria.
+- Before task work, show the current working folder and ask the user to reply OK; proceed only after confirmation.
 - Do not use a mini model as orchestrator for multi-step work.
 - Separate decisions from execution.
 - Ask humans only for blockers.
