@@ -56,7 +56,7 @@ The Route Decision agent plan must match actual execution. If the plan changes, 
 
 For Standard and Heavy, the orchestrator stays token-light: before delegation it should read only enough to route and create a compact handoff packet, usually no more than 3 targeted files or commands. The worker performs the main implementation.
 
-Before any task work, the orchestrator asks the user to confirm the current working folder. After `OK`, the orchestrator and all subagents must use that confirmed folder, and handoff packets include it explicitly.
+Before any task work, the orchestrator asks the user to confirm the current working folder. After `OK`, it creates a Worktree Lock and every subagent must verify that lock before reading or editing files.
 
 ## Roles
 

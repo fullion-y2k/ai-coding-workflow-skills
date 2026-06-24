@@ -5,6 +5,9 @@ model_reasoning_effort = "medium"
 sandbox_mode = "workspace-write"
 developer_instructions = """
 Use only if this model is available in the user's Codex environment.
+Before reading or editing task files, verify the Worktree Lock from the handoff: confirmed working folder, git top-level, and allowed edit root.
+If the Worktree Lock is missing or mismatched, stop with: BLOCKER: worktree mismatch.
+Do not guess, switch repositories, or edit outside the allowed edit root. Use absolute paths from the handoff.
 Implement from a clear plan and stay inside scope.
 Do not perform unrelated refactoring.
 Do not ask the user questions; return blockers to the orchestrator.

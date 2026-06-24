@@ -92,8 +92,8 @@ def validate_skills() -> None:
             require("## Delegated Implementation Contract" in text, f"{skill}/SKILL.md has delegated implementation contract")
             require("## Stop Conditions" in text, f"{skill}/SKILL.md has stop conditions")
             require("## Route Risk Floors" in text, f"{skill}/SKILL.md has route risk floors")
-            require("all orchestrator and subagent work must use that folder" in text, f"{skill}/SKILL.md has workspace confirmation gate")
-            require("Confirmed working folder and objective" in text, f"{skill}/SKILL.md requires confirmed folder in handoff")
+            require("create a Worktree Lock" in text, f"{skill}/SKILL.md has worktree lock creation")
+            require("Worktree Lock and objective" in text, f"{skill}/SKILL.md requires worktree lock in handoff")
             require("Route Decision is an execution checkpoint" in text, f"{skill}/SKILL.md treats route decision as checkpoint")
             require("Delegate the main implementation to `worker-mini`" in text, f"{skill}/SKILL.md delegates standard implementation to worker-mini")
             require("safer to do directly" in text, f"{skill}/SKILL.md rejects direct-work convenience as no-worker reason")
@@ -129,6 +129,10 @@ def validate_agents() -> None:
         require(model in ALLOWED_MODELS, f"{path.relative_to(ROOT)} uses allowed model")
         require(model not in FORBIDDEN_MODEL_VALUES, f"{path.relative_to(ROOT)} avoids forbidden model values")
         require(data.get("model_reasoning_effort") == "medium", f"{path.relative_to(ROOT)} uses medium reasoning")
+        instructions = str(data.get("developer_instructions", ""))
+        require("Worktree Lock" in instructions, f"{path.relative_to(ROOT)} requires Worktree Lock")
+        require("BLOCKER: worktree mismatch" in instructions, f"{path.relative_to(ROOT)} blocks on worktree mismatch")
+        require("absolute paths" in instructions, f"{path.relative_to(ROOT)} requires absolute paths")
 
 
 def validate_language() -> None:

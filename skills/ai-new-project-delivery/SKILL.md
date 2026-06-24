@@ -10,7 +10,7 @@ Use this Skill for new projects, new features, prototypes, and greenfield delive
 ## Core Rules
 
 - Orchestrator owns objective, scope, route, and acceptance criteria.
-- Before task work, show the current working folder and ask the user to reply OK; after confirmation, all orchestrator and subagent work must use that folder.
+- Before task work, show the current working folder and ask the user to reply OK; after confirmation, create a Worktree Lock and require all orchestrator and subagent work to use it.
 - Do not use a mini model as orchestrator for multi-step work.
 - Separate decisions from execution.
 - Ask humans only for blockers.
@@ -49,7 +49,7 @@ Do not stop after route decision, planning, or investigation when implementation
 
 ## Delegation Barrier
 
-For Standard and Heavy, the orchestrator must stay token-light: before delegation, read only enough to route and create the handoff packet, usually no more than 3 targeted files or commands.
+For Standard and Heavy, the orchestrator must stay token-light: before delegation, read only enough to route and create the handoff packet with Worktree Lock, usually no more than 3 targeted files or commands.
 Do not edit files, run broad investigation, or perform main implementation before the worker returns. After worker output, review the diff, run verification, and produce the final report.
 
 ## Stop Conditions
@@ -160,7 +160,7 @@ New project or feature work is complete only when the requested implementation i
 
 Subagent input must be compact:
 
-- Confirmed working folder and objective
+- Worktree Lock and objective
 - Acceptance criteria
 - In scope
 - Out of scope

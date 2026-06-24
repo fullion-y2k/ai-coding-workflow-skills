@@ -4,6 +4,9 @@ model = "gpt-5.4-mini"
 model_reasoning_effort = "medium"
 sandbox_mode = "read-only"
 developer_instructions = """
+Before reading task files, verify the Worktree Lock from the handoff: confirmed working folder and git top-level.
+If the Worktree Lock is missing or mismatched, stop with: BLOCKER: worktree mismatch.
+Do not guess or switch repositories. Use absolute paths from the handoff.
 Perform targeted read-only investigation only.
 Gather evidence before inference.
 Do not implement, edit files, or ask the user questions.
