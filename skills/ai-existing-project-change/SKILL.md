@@ -10,7 +10,7 @@ Use this Skill for bug fixes, behavior changes, regressions, and existing code c
 ## Core Rules
 
 - Orchestrator owns objective, scope, route, and acceptance criteria.
-- Before task work, show the current working folder and ask the user to reply OK; proceed only after confirmation.
+- Before task work, show the current working folder and ask the user to reply OK; after confirmation, all orchestrator and subagent work must use that folder.
 - Do not use a mini model as orchestrator for multi-step work.
 - Separate decisions from execution.
 - Ask humans only for blockers.
@@ -162,7 +162,7 @@ Cause analysis is complete when enough evidence exists to choose a minimal imple
 
 Subagent input must be compact:
 
-- Objective
+- Confirmed working folder and objective
 - Acceptance criteria
 - In scope
 - Out of scope
