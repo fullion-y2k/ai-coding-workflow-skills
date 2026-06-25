@@ -5,7 +5,7 @@ description: Existing project change workflow for Codex. Uses issue confirmation
 
 # AI Existing Project Change
 
-Use this Skill for bug fixes, behavior changes, regressions, and existing code changes. Use `references/investigation-and-verification.md` for investigation rules. Use `references/artifact-templates.md` when artifacts are needed.
+Use this Skill for bug fixes, behavior changes, regressions, and existing code changes. Use `references/investigation-and-verification.md` and `references/evidence-and-atomic-delegation.md` for investigation rules. Use `references/artifact-templates.md` when artifacts are needed.
 
 ## Core Rules
 
@@ -53,6 +53,16 @@ Do not stop after route decision, planning, investigation, or cause analysis whe
 
 For Standard and Heavy, the orchestrator must stay token-light: before delegation, read only enough to route and create the handoff packet with Worktree Lock, usually no more than 3 targeted files or commands.
 Do not edit files, run broad investigation, or perform main implementation before the worker returns. After worker output, review the diff, run verification, and produce the final report.
+
+## Evidence Discipline
+
+Read `references/evidence-and-atomic-delegation.md` before investigation. Classify claims as `Observed`, `Derived`, or `Unknown`; write `Cause not confirmed` when evidence is insufficient. Only the orchestrator creates Derived findings, likely cause, or final conclusion.
+
+## Atomic Delegation
+
+For Standard and Heavy, delegation is default. Before deep file reading, create at least one Atomic Explorer Ticket when cause is unknown, multiple files/layers are involved, DB/query/schema/auth/API/security behavior is involved, UI and service behavior both need mapping, current behavior is requested, or investigation may exceed 3 primary files.
+
+Mini/lightweight subagents get exactly one evidence question and return Observed facts only. Do not delegate product decisions, design judgment, broad diagnosis, final conclusions, likely cause, or implementation decisions.
 
 ## Stop Conditions
 
@@ -170,6 +180,7 @@ Subagent input must be compact:
 - Disallowed changes
 - Relevant files and symbols
 - Evidence or known cause
+- Atomic Explorer Ticket when investigation is delegated
 - Assigned action
 - Required verification
 - Blocker return format
@@ -177,7 +188,7 @@ Subagent input must be compact:
 Subagent output must be compact:
 
 - Findings or changes
-- Evidence
+- Observed facts, Unknowns, and no unsupported Derived claims
 - Files touched
 - Commands/tests run
 - Result
@@ -197,4 +208,4 @@ Use `docs/ai-work/<task-id>/`.
 Do not write monetary calculations in artifacts.
 ## Final Report
 
-Include Worktree verified, route used, agents used or why no subagent was used, files changed, tests/checks run, verification result, acceptance criteria status, remaining risk, and blockers if any.
+Include Worktree verified, Evidence discipline, Observed evidence, Derived findings, Unknowns, Cause not confirmed yes/no, route used, agents used or why no subagent was used, files changed, tests/checks run, verification result, acceptance criteria status, remaining risk, and blockers if any.

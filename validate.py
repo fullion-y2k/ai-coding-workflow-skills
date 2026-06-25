@@ -17,11 +17,13 @@ ALLOWED_MODELS = {"gpt-5.5", "gpt-5.4", "gpt-5.4-mini", "gpt-5.3-codex"}
 REQUIRED_SKILLS = {
     "ai-new-project-delivery": [
         "references/artifact-templates.md",
+        "references/evidence-and-atomic-delegation.md",
         "references/verification.md",
         "references/worktree-lock.md",
     ],
     "ai-existing-project-change": [
         "references/artifact-templates.md",
+        "references/evidence-and-atomic-delegation.md",
         "references/investigation-and-verification.md",
         "references/worktree-lock.md",
     ],
@@ -109,6 +111,18 @@ def validate_skills() -> None:
             require("Subagent unavailable:" in text, f"{skill}/SKILL.md requires explicit subagent unavailable marker")
             require("final review incomplete" in text, f"{skill}/SKILL.md requires incomplete review marker when Heavy agents are skipped")
             require("## Delegation Barrier" in text, f"{skill}/SKILL.md has delegation barrier")
+            require("## Evidence Discipline" in text, f"{skill}/SKILL.md has Evidence Discipline")
+            require("## Atomic Delegation" in text, f"{skill}/SKILL.md has Atomic Delegation")
+            for phrase in [
+                "Atomic Explorer Ticket",
+                "Observed",
+                "Derived",
+                "Unknown",
+                "Cause not confirmed",
+                "Observed facts only",
+                "implementation decisions",
+            ]:
+                require(phrase in text, f"{skill}/SKILL.md contains {phrase}")
             require("usually no more than 3 targeted files or commands" in text, f"{skill}/SKILL.md limits orchestrator pre-delegation context")
             require("Agent plan` must match execution" in text, f"{skill}/SKILL.md requires agent plan to match execution")
             require("Worker owns bounded code edits" in text, f"{skill}/SKILL.md assigns code edits to worker")
@@ -126,8 +140,30 @@ def validate_skills() -> None:
                 "Allowed edit root",
                 "Worktree verified",
                 "BLOCKER: worktree mismatch",
+                "Atomic Explorer Ticket",
+                "Explorer Ticket Quality Gate",
+                "Observed facts only",
+                "Observed evidence",
+                "Derived findings",
+                "Unknowns",
+                "Cause not confirmed",
             ]:
                 require(phrase in artifact_text, f"{skill}/references/artifact-templates.md contains {phrase}")
+        evidence = skill_dir / "references/evidence-and-atomic-delegation.md"
+        if evidence.is_file():
+            evidence_text = read_text(evidence)
+            for phrase in [
+                "Evidence Discipline",
+                "Atomic Explorer Ticket",
+                "Explorer Ticket Quality Gate",
+                "Observed facts only",
+                "Observed",
+                "Derived",
+                "Unknown",
+                "Cause not confirmed",
+                "implementation decisions",
+            ]:
+                require(phrase in evidence_text, f"{skill}/references/evidence-and-atomic-delegation.md contains {phrase}")
         worktree_lock = skill_dir / "references/worktree-lock.md"
         if worktree_lock.is_file():
             lock_text = read_text(worktree_lock)
@@ -172,6 +208,9 @@ def validate_agents() -> None:
         require("Allowed read root" in instructions, f"{path.relative_to(ROOT)} checks allowed read root")
         require("Allowed edit root" in instructions, f"{path.relative_to(ROOT)} checks allowed edit root")
         require("Worktree verified" in instructions, f"{path.relative_to(ROOT)} reports worktree verification")
+        require("Atomic Explorer Ticket" in instructions, f"{path.relative_to(ROOT)} supports Atomic Explorer Ticket")
+        require("Observed facts only" in instructions, f"{path.relative_to(ROOT)} returns observed facts only")
+        require("implementation decisions" in instructions, f"{path.relative_to(ROOT)} avoids implementation decisions")
         require("absolute paths" in instructions, f"{path.relative_to(ROOT)} requires absolute paths")
         require("repo search" in instructions, f"{path.relative_to(ROOT)} verifies before repo search")
         require("file read" in instructions, f"{path.relative_to(ROOT)} verifies before file read")

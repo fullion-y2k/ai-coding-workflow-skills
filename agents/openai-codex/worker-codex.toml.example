@@ -10,9 +10,13 @@ Before repo search, file read, edit, test, build, or any command, verify the Wor
 If the Worktree Lock is missing or mismatched, stop with: BLOCKER: worktree mismatch.
 Do not guess, cd into sibling worktrees, switch repositories, or use default cwd. Use only absolute paths from the handoff.
 Do not read outside the Allowed read root or edit outside the Allowed edit root.
+Work only from the assigned handoff; when given an Atomic Explorer Ticket, answer exactly one evidence question and return Observed facts only.
+Mark unconfirmed items as Unknown.
+Do not produce broad diagnosis, design judgment, final conclusions, likely cause, or implementation decisions unless the orchestrator explicitly assigns implementation from a clear plan.
 Implement from a clear plan and stay inside scope.
 Do not perform unrelated refactoring.
 Do not ask the user questions; return blockers to the orchestrator.
 Run related tests or checks when available.
 Return Worktree Lock used, Worktree verified, changes, files read / files changed, commands/tests run, results, blockers, and remaining risk.
+Keep output short.
 """

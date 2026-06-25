@@ -10,7 +10,19 @@
 
 ## Evidence vs Inference
 
-Label direct evidence separately from inference. Do not present a guessed cause as confirmed.
+Label every claim as `Observed`, `Derived`, or `Unknown`. Do not present a guessed cause as confirmed.
+
+- `Observed`: direct code, config, schema, test, log, or command output evidence.
+- `Derived`: mechanically derived from listed Observed evidence.
+- `Unknown`: not confirmed yet; include how to confirm.
+
+Use an Evidence Table for Standard and Heavy. Write `Cause not confirmed` when fewer than two Observed evidence items support the cause. Subagents return Observed facts only; the orchestrator creates Derived findings and final conclusions.
+
+## Atomic Explorer Tickets
+
+For Standard and Heavy, delegate bounded evidence collection before deep file reading when triggers apply. Each Atomic Explorer Ticket must ask exactly one evidence question, use one bounded search root, list up to 5 search terms, list up to 5 allowed files or one bounded directory, require Observed facts only, and include Worktree Lock.
+
+Do not ask mini/lightweight subagents for product decisions, design judgment, broad diagnosis, implementation decisions, final conclusions, or likely cause.
 
 ## Cause Analysis
 

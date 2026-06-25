@@ -64,6 +64,37 @@ Allowed read root:
 Allowed edit root:
 Worktree verified:
 
+## Evidence Table
+
+| Claim | Type: Observed / Derived / Unknown | Evidence | How to confirm |
+| ----- | ---------------------------------- | -------- | -------------- |
+
+## Atomic Explorer Ticket
+
+Worktree Lock:
+Evidence question:
+Why this is delegated:
+Allowed search roots:
+Allowed search terms:
+Allowed files:
+Do not read:
+Do not do:
+Evidence needed:
+Output format:
+Stop and return if:
+Output limit:
+
+## Explorer Ticket Quality Gate
+
+- ticket asks exactly one evidence question
+- search root is bounded and inside Worktree Lock
+- search terms are listed and limited to 5
+- allowed files are listed and limited to 5, or one bounded directory is used
+- ticket does not ask for product decisions, design judgment, broad diagnosis, or implementation decisions
+- output requires Observed facts only
+- output limit is explicit
+- Worktree Lock is included
+
 ## Assigned Action
 
 ## Required Verification
@@ -71,6 +102,32 @@ Worktree verified:
 ## Blocker Return Format
 
 Use `BLOCKER: worktree mismatch` when the Worktree Lock does not match.
+```
+
+## EXPLORER-OUTPUT.md
+
+```markdown
+# Explorer Output
+
+## Worktree Lock used
+
+## Worktree verified
+
+## Observed facts
+
+## Unknowns
+
+## Files read
+
+## Important candidates not read
+
+## Commands run
+
+## Result
+
+## Blockers
+
+## Remaining risk
 ```
 
 ## VERIFICATION.md
@@ -155,6 +212,16 @@ Use `BLOCKER: worktree mismatch` when the Worktree Lock does not match.
 ## Verification Evidence
 
 ## Worktree verified
+
+## Evidence discipline
+
+## Observed evidence
+
+## Derived findings
+
+## Unknowns
+
+## Cause not confirmed: yes/no
 
 ## Go/No-Go
 
